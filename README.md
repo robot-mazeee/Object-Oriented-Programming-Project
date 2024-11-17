@@ -46,11 +46,10 @@ A vida das árvores segue o ciclo definido pelas estações do ano. Assim, por e
 
 O esforço total de limpeza de uma árvore é assim determinado pelo produto de três factores: o primeiro corresponde à dificuldade base de limpeza da árvore; o segundo depende da estação do ano e do tipo de árvore, tal como indicado na tabela seguinte (função esforço_sazonal); e o terceiro corresponde a um factor que aumenta com a idade da árvore (ver abaixo).
 
-Estação »	    Inverno	 Primavera	Verão	Outono
 
-Folha caduca »	  0	        1	      2	     5
+<img width="647" alt="image" src="https://github.com/user-attachments/assets/34a1fb17-d88e-429d-9ffb-3d6b0f8f7b15">
 
-Folha perene »	  2	        1	      1	     1
+
 
 A parte do esforço total de limpeza que é proporcional à idade da árvore cresce logaritmicamente (i.e., não muito rapidamente): log(idade + 1) (logaritmo natural).
 
@@ -105,11 +104,9 @@ Por exemplo, quando uma ave recebe uma vacina destinada apenas a um mamífero, o
 
 A seguinte tabela descreve os resultados associados aos potenciais danos causados por vacinações:
 
-# Dano	                    Termo a adicionar na apresentação do estado de saúde
-0 (mesma espécie)	          NORMAL
-0 (espécies diferentes)	    CONFUSÃO
-1 a 4	                      ACIDENTE
-5 ou mais	                  ERRO
+
+<img width="648" alt="image" src="https://github.com/user-attachments/assets/874e5a38-3778-48b4-bcc1-a5a942830204">
+
 
 Por exemplo, um animal que tenha recebido 2 vacinas com um dano entre 1 e 4 (ACIDENTE), três vacinas com um dano igual ou superior a 5 (ERRO) e uma vacina correctamente aplicada, apresenta o seguinte historial de saúde (usa-se a vírgula como separador): ACIDENTE,ACIDENTE,ERRO,ERRO,ERRO,NORMAL (i.e., concatenação ordenada por ordem de ocorrência).
 
@@ -140,13 +137,9 @@ As excepções usadas na interacção (subclasses de pt.tecnico.uilib.menus.Comm
 
 Nos pedidos e usos dos vários identificadores, podem ocorrer as seguintes excepções, caso o identificador indicado não corresponda a um objecto conhecido (excepto no processo de registo ou em caso de indicação contrária). Note-se que estas excepções não são utilizáveis no núcleo da aplicação.
 
-# Tipo de dados	Classe	 Pedido a apresentar	 Excepção a lançar se desconhecido
-Animal	                 Animal	               hva.app.animal.Prompt.animalKey()	hva.app.exceptions.UnknownAnimalKeyException
-Espécie                	 Species	             hva.app.animal.Prompt.speciesKey()	hva.app.exceptions.UnknownSpeciesKeyException
-Funcionário	             Employee	             hva.app.employee.Prompt.employeeKey()	hva.app.exceptions.UnknownEmployeeKeyException
-Habitat	                 Habitat	             hva.app.habitat.Prompt.habitatKey()	hva.app.exceptions.UnknownHabitatKeyException
-Árvore	                 Tree	                 hva.app.habitat.Prompt.treeKey()	hva.app.exceptions.UnknownTreeKeyException
-Vacina	                 Vaccine	             hva.app.vaccine.Prompt.vaccineKey()	hva.app.exceptions.UnknownVaccineKeyException
+
+<img width="647" alt="image" src="https://github.com/user-attachments/assets/c5534fbf-988a-40a4-a234-69a255c2c1fe">
+
 
 Alguns casos particulares podem usar pedidos específicos não apresentados nesta tabela.
 
@@ -278,9 +271,9 @@ O valores possíveis para tipoÁrvore são PERENE e CADUCA.
 
 Os possíveis valores para o campo cicloBiológico são:
 
-# Tipo de Árvore	Inverno    	  Primavera	    Verão	      Outono
-      CADUCA	    SEMFOLHAS	    GERARFOLHAS	  COMFOLHAS	  LARGARFOLHAS
-      PERENE	    LARGARFOLHAS	GERARFOLHAS	  COMFOLHAS	  COMFOLHAS
+
+<img width="647" alt="image" src="https://github.com/user-attachments/assets/af2eb32b-5644-47fc-ab8f-e6d9ded781a3">
+
 
 # Registar um novo habitat
 O sistema pede o identificador, o nome (Prompt.habitatName()) (cadeia de caracteres) e a área do habitat (Prompt.habitatArea()) (número inteiro), sendo registado o novo habitat.
@@ -331,7 +324,6 @@ O sistema lista todas as vacinas aplicadas, por ordem de aplicação, usando o s
 
  REGISTO-VACINA|idVacina|idVeterinário|idEspécie
 
-
 # Menu de Consultas
 O menu de consultas permite efectuar pesquisas sobre as entidades do domínio e suas relações. Sempre que for feita uma consulta e nenhuma entidade satisfizer as condições associadas ao pedido, nada deve ser apresentado.
 
@@ -369,43 +361,14 @@ No formato abaixo: para os habitats, só os 4 primeiros campos são obrigatório
 
 # Formato do ficheiro de entrada textual
 
-ESPÉCIE|id|nome
-ÁRVORE|id|nome|idade|dificuldade|tipo
-HABITAT|id|nome|área|idÁrvore1,...,idÁrvoreN
-ANIMAL|id|nome|idEspécie|idHabitat
-TRATADOR|id|nome|idHabitat1,...,idHabitatN
-VETERINÁRIO|id|nome|idEspécie1,...,idEspécieN
-VACINA|id|nome|idEspécie1,…,idEspécieN
+<img width="196" alt="image" src="https://github.com/user-attachments/assets/7d207b7f-f346-4dfe-a7ed-36b997bb4cad">
 
-Exemplo de ficheiro de entrada textual: ficheiro test.import
 
-ESPÉCIE|C10|ave
-ESPÉCIE|C8|mamífero
-ESPÉCIE|C1|peixe
-ÁRVORE|T1|Pinheiro 1|5|20|PERENE
-ÁRVORE|T4|Pinheiro 4|60|20|PERENE
-ÁRVORE|T2|Oliveira|1200|10|PERENE
-ÁRVORE|T6|Figueira|5|10|CADUCA
-ÁRVORE|T3|Plátano|300|20|CADUCA
-ÁRVORE|P1|Plátano|100|20|CADUCA
-ÁRVORE|F30|Figueira|50|20|CADUCA
-HABITAT|AR1|Aldeia dos Macacos|20|T3,P1,F30,T2
-HABITAT|AR2|Floresta tropical|30|T1,T4,T6
-HABITAT|AR3|Deserto|3
-ANIMAL|A1|Alex|C10|AR1
-ANIMAL|A2|Nemo|C1|AR2
-ANIMAL|AA|Bobi|C8|AR1
-ANIMAL|MA|Chita|C8|AR2
-TRATADOR|W2SO4|John Figueiredo|AR2,AR3
-TRATADOR|W2O|Rohit Figueiredo|AR1
-TRATADOR|W24|Rohit Figueiredo
-VETERINÁRIO|V2|Jorge Figueiredo|C10,C8,C1
-VETERINÁRIO|V4|Filomena Figueiredo
-VETERINÁRIO|VR|Abdul Figueiredo|C8
-VACINA|V3|Tétano|C8
-VACINA|V200|Parasitas intestinais|C10,C8,C1
-VACINA|V42172|Tétano|C10
-VACINA|Vexperimental|Gripe A1|C8
+# Exemplo de ficheiro de entrada textual: ficheiro test.import
+
+
+<img width="250" alt="image" src="https://github.com/user-attachments/assets/d55c5664-d4b9-4f98-adb0-6ce554e25f91">
+
 
 Ver abaixo a forma de utilizar estes ficheiros.
 
