@@ -143,7 +143,7 @@ Nos pedidos e usos dos vários identificadores, podem ocorrer as seguintes excep
 
 Alguns casos particulares podem usar pedidos específicos não apresentados nesta tabela.
 
-# ComnMenu Principal
+# Menu Principal
 As acções deste menu permitem gerir a salvaguarda do estado da aplicação, realizar algumas operações globais e abrir submenus. 
 A lista completa é a seguinte: 
 
