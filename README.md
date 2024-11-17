@@ -46,9 +46,11 @@ A vida das árvores segue o ciclo definido pelas estações do ano. Assim, por e
 
 O esforço total de limpeza de uma árvore é assim determinado pelo produto de três factores: o primeiro corresponde à dificuldade base de limpeza da árvore; o segundo depende da estação do ano e do tipo de árvore, tal como indicado na tabela seguinte (função esforço_sazonal); e o terceiro corresponde a um factor que aumenta com a idade da árvore (ver abaixo).
 
-Estação »	    Inverno	Primavera	Verão	Outono
-Folha caduca »	0	        1	      2	     5
-Folha perene »	2	        1	      1	     1
+Estação »	    Inverno	 Primavera	Verão	Outono
+
+Folha caduca »	  0	        1	      2	     5
+
+Folha perene »	  2	        1	      1	     1
 
 A parte do esforço total de limpeza que é proporcional à idade da árvore cresce logaritmicamente (i.e., não muito rapidamente): log(idade + 1) (logaritmo natural).
 
