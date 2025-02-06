@@ -1,10 +1,13 @@
-# HVA application
+# Description
 
-At the beginning of development, the repository contains skeleton code for the application. 
+In this project, I implemented a conceptual hotel, where animals, trees, vets and keepers can interact.
 
-* Core: `hva-core` contains the domain classes
-* Interaction: `hva-app` contains the user interaction classes
-* UML diagrams: `uml` will contain the diagrams from the first delivery
+This repository provides tests which can be ran with the following commands:
+
+```
+java -Dimport=test.import -Din=test.in -Dout=test.outhyp hva.app.App
+diff -b test.out test.outhyp
+```
 
 # Propriedades e funcionalidade
 Os animais de várias espécies são mantidos por tratadores que são responsáveis por distribuir a comida e pela limpeza dos habitats, e por veterinários, que têm a responsabilidade de zelar pela saúde dos animais. Quando um animal recebe uma vacina não apropriada à sua espécie, por causa de um erro veterinário, por exemplo, fica com a saúde afectada até ao fim da sua vida. Os habitats têm árvores. É possível calcular o grau de satisfação dos animais e dos funcionários.
@@ -374,13 +377,4 @@ Ver abaixo a forma de utilizar estes ficheiros.
 
 A codificação dos ficheiros a ler é garantidamente UTF-8.
 Note-se que o programa nunca produz ficheiros com este formato.
-
-# Execução dos Programas e Testes Automáticos
-Usando os ficheiros test.import, test.in e test.out, é possível verificar automaticamente o resultado correcto do programa. Note-se que é necessária a definição apropriada da variável CLASSPATH (ou da opção equivalente -cp do comando java), para localizar as classes do programa, incluindo a que contém o método correspondente ao ponto de entrada da aplicação (hva.app.App.main). As propriedades são tratadas automaticamente pelo código de apoio (po-uilib).
-
-        java -Dimport=test.import -Din=test.in -Dout=test.outhyp hva.app.App
-Assumindo que aqueles ficheiros estão no directório onde é dado o comando de execução, o programa produz o ficheiro de saída test.outhyp. Em caso de sucesso, os ficheiros das saídas esperada (test.out) e obtida (test.outhyp) devem ser iguais. A comparação pode ser feita com o comando:
-
-         diff -b test.out test.outhyp
-Este comando não deve produzir qualquer resultado quando os ficheiros são iguais. Note-se, contudo, que este teste não garante o correcto funcionamento do código desenvolvido, apenas verificando alguns aspectos da sua funcionalidade.
 
