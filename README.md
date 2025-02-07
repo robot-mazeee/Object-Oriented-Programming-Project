@@ -86,11 +86,6 @@ satisfação(t) = 300 - trabalho(t)
 trabalho(t) = Σ (trabalho_no_habitat(h) / número_de_tratadores_podem_cuidar_habitat(h)), h ∈ habitats(t)
 trabalho_no_habitat(h) = área(h) + 3 * população(h) + Σ esforço_limpeza(a), a ∈ árvores(h)
 
-# Vacinas
-As vacinas são identificadas por uma chave única (cadeia de caracteres arbitrária definida na altura da criação).
-
-Cada vacina tem um nome (cadeia de caracteres; não única) e está associada às espécies a que pode ser aplicada. Tem ainda o registo de aplicações a cada animal pelos veterinários, por ordem de vacinação.
-
 # Problemas associados à vacinação
 O estado de saúde de um animal é o histórico de eventos (inicialmente vazio), relacionados com a vacinação do animal, a partir da situação inicial, entre os quais estão os danos causados por más vacinações.
 
@@ -146,114 +141,40 @@ Nos pedidos e usos dos vários identificadores, podem ocorrer as seguintes excep
 
 Alguns casos particulares podem usar pedidos específicos não apresentados nesta tabela.
 
-# Menu Principal
-As acções deste menu permitem gerir a salvaguarda do estado da aplicação, realizar algumas operações globais e abrir submenus. 
-A lista completa é a seguinte: 
+<h1>Funtionality</h1>
 
-1. Criar
-2. Abrir
-3. Guardar
-4. Avançar Estação do Ano
-5. Ver Estado de Satisfação, Gestão de Animais
-6. Gestão de Funcionários
-7. Gestão de Vacinas
-8. Gestão de Habitats
-9. Consultas.
+# Main Menu
+The main menu allows the user to manage and save the state of the application, perform global operations and open submenus. 
 
-As secções abaixo descrevem pormenorizadamente as acções associadas a estas opções.
+1. Create empty application
+2. Open existing application
+3. Save application state
+4. Advance Season
+5. See Satisfaction State, Manage Animals
+6. Manage Employees
+7. Manage Vaccines
+8. Manage Habitats
+9. Consults
+    
+# Check Global Satisfaction
+The application returns the sum of all animals' and employees' satisfactions.
 
-As etiquetas das opções deste menu estão definidas em hva.app.main.Label. Todos os métodos correspondentes às mensagens de diálogo para este menu estão definidos em hva.app.main.Prompt e hva.app.main.Message.
+# Animal Management Menu
 
-Estes comandos já estão implementados nas classes da package hva.app.main (disponível no GIT), respectivamente: DoNewFile, DoOpenFile, DoSaveFile, DoAdvanceSeason, DoShowGlobalSatisfaction, DoOpenAnimalsMenu, DoOpenEmployeesMenu, DoOpenHabitatsMenu, DoOpenVaccinesMenu, DoOpenLookupsMenu.
+1. See all Animals 
+2. Register new Animal
+3. Transfer Animal to another Habitat 
+4. Calculate Animal Satisfaction
+   
+# Employee Management Menu
 
-# Salvaguarda do estado actual da aplicação
-Inicialmente, a aplicação não tem qualquer informação, excepto quando usada a propriedade import (ver abaixo) para pré-carregar dados iniciais. O conteúdo da aplicação (toda a informação actualmente em memória) pode ser guardado para posterior recuperação (via serialização Java: java.io.Serializable). Na leitura e escrita do estado da aplicação, devem ser tratadas as excepções associadas. A funcionalidade é a seguinte:
+1. See all Employees
+2. Register new Employee 
+3. Assign a new Responsibility (Habitat to clean or Animal to vaccinate) 
+4. Remove an Employee's Responsibility
+5. Calculate Employee Satisfaction
 
-Criar -- Cria uma nova aplicação vazia: a aplicação não fica associada a nenhum ficheiro (é anónima).
-
-Abrir -- Carrega os dados de uma sessão anterior a partir de um ficheiro previamente guardado (ficando este ficheiro associado à aplicação, para futuras operações de salvaguarda). Pede-se o nome do ficheiro a abrir (Prompt.openFile()). Caso ocorra um problema na abertura ou processamento do ficheiro, deve ser lançada a excepção FileOpenFailedException. A execução bem-sucedida desta opção substitui toda a informação da aplicação.
-
-Guardar -- Guarda o estado actual da aplicação no ficheiro associado. Se não existir associação, pede-se o nome do ficheiro a utilizar, ficando a ele associado (para operações de salvaguarda subsequemtes). Esta interacção realiza-se através do método Prompt.newSaveAs(). Não é executada nenhuma acção se não existirem alterações desde a última salvaguarda.
-
-Quando se abandona uma aplicação com modificações não guardadas (porque se cria ou abre outra), deve perguntar-se se se quer guardar a informação actual antes de a abandonar, através de Prompt.saveBeforeExit() (a resposta é obtida invocando readBoolean() ou de Form.confirm()).
-
-Note-se que a opção Abrir não permite a leitura de ficheiros de texto (estes apenas podem ser utilizados no início da aplicação).
-A opção Sair nunca implica a salvaguarda do estado da aplicação, mesmo que existam alterações.
-
-Avançar Estação do Ano -- Esta opção permite avançar a estação do ano, afectando todas as árvores em todos os habitats.
-
-O comando deve apresentar na saída o código para a estação actual: 0 para Primavera, 1 para Verão, 2 para Outono e 3 para Inverno.
-
-# Ver Estado de Satisfação Global
-O sistema apresenta o somatório dos valores de satisfação de todas as entidades registadas no hotel: animais e funcionários. O valor total a apresentar é o que resulta do arredondamento ao inteiro mais próximo (via Math.round).
-
-# Menu de Gestão de Animais
-Este menu permite operar sobre animais. A lista completa é a seguinte: (i) visualizar todos os animais; (ii) registar um novo animal; (iii) transferir um animal para um habitat; (iv) calcular a satisfação de um animal. As secções abaixo descrevem estas opções.
-
-As etiquetas das opções deste menu estão definidas em hva.app.animal.Label. Os métodos correspondentes às mensagens de diálogo para este menu estão definidos em hva.app.animal.Prompt e hva.app.animal.Message.
-Estes comandos já estão implementados nas classes da package hva.app.animal (disponível no GIT), respectivamente: DoShowAllAnimals, DoRegisterAnimal, DoTransferToHabitat, DoShowSatisfactionOfAnimal.
-
-# Visualizar todos os animais
-O formato de apresentação de cada animal é o seguinte:
-
- ANIMAL|idAnimal|nomeAnimal|idEspécie|historialDeSaúde|idHabitat
-
-Se o animal nunca foi vacinado (com ou sem sucesso), o historial de saúde deve ser apresentado como VOID:
-
- ANIMAL|idAnimal|nomeAnimal|idEspécie|VOID|idHabitat
-
-O historial de saúde é apresentado como descrito em Problemas associados à vacinação, i.e., uma sequência de eventos separados por vírgulas.
-
-# Registar um novo animal
-O sistema pede o identificador do novo animal. De seguida pede o nome do animal (Prompt.animalName()), o identificador da espécie e o identificador do habitat.
-
-Se o identificador da espécie não existe, deve pedir-se o nome da nova espécie (Prompt.speciesName()) (cadeia de caracteres) e registá-la com o identificador indicado.
-
-Se o identificador do animal já existir, lança a excepção DuplicateAnimalKeyException, não se processando o registo.
-
-# Transferir um animal para um habitat
-Para realizar a operação, o sistema pede o identificador do animal e o identificador do habitat de destino.
-
-# Calcular a satisfação de um animal
-O sistema pede o identificador do animal, sendo apresentado o valor da sua satisfação (arredondado ao inteiro mais próximo via Math.round).
-
-# Menu de Gestão de Funcionários
-Este menu permite operar sobre funcionários. A lista completa é a seguinte: (i) visualizar todos os funcionários; (ii) registar um novo funcionário; (iii) atribuir uma nova responsabilidade a um funcionário; (iv) retirar uma responsabilidade a um funcionário; (v) calcular a satisfação de um funcionário. As secções abaixo descrevem estas opções.
-
-As etiquetas das opções deste menu estão definidas em hva.app.employee.Label. Todos os métodos correspondentes às mensagens de diálogo para este menu estão definidos em hva.app.employee.Prompt e hva.app.employee.Message.
-
-Estes comandos já estão implementados nas classes da package hva.app.employee (disponível no GIT), respectivamente: DoShowAllEmployees, DoRegisterEmployee, DoAddResponsibility, DoRemoveResponsibility, DoShowSatisfactionOfEmployee.
-
-# Visualizar todos os funcionários
-O formato de apresentação de cada funcionário é o seguinte:
-
- tipo|id|nome|idResponsabilidades
-
-Os valores para o campo tipo são VET ou TRT. Os valores para o campo idResponsabilidades são os identificadores, separados por vírgulas, dos habitats que um tratador pode limpar ou das espécies de animais que um veterinário pode tratar.
-
-Se o funcionário não tiver responsabilidades atribuídas, o formato de apresentação é o seguinte:
-
- tipo|id|nome
-
-# Registar um novo funcionário
-O sistema pede o identificador do novo funcionário, assim como o seu nome (Prompt.employeeName()) (cadeia de caracteres). De seguida, pede-se o tipo de funcionário (Prompt.employeeType()). A resposta deve ser VET (é registado um veterinário) ou TRT (é registado um tratador). Se a resposta não corresponder a nenhum dos dois valores, a pergunta é repetida até se obter uma resposta válida. Quando um funcionário é registado fica sem qualquer responsabilidade.
-
-Se já existir um funcionário com o mesmo identificador, deve ser lançada a excepção DuplicateEmployeeKeyException, não se realizando qualquer acção.
-
-# Atribuir uma nova responsabilidade a um funcionário
-O sistema pede o identificador do funcionário e o identificador da nova responsabilidade (Prompt.responsibilityKey()): o identificador de uma espécie, se for um veterinário; ou o identificador de um habitat, se for um tratador.
-
-Se o funcionário já tinha essa responsabilidade, não é executada nenhuma acção.
-
-Se a responsabilidade não existir, então deve ser lançada a excepção NoResponsibilityException.
-
-# Retirar uma responsabilidade a um funcionário
-O sistema pede o identificador do funcionário e o identificador da responsabilidade a retirar (Prompt.responsibilityKey()): o identificador de uma espécie, se for um veterinário; ou o identificador de um habitat, se for um tratador. Se a responsabilidade não estava atribuída ao funcionário ou não existe, é lançada a excepção NoResponsabilityException.
-
-# Calcular a satisfação de um funcionário
-O sistema pede o identificador do funcionário, sendo apresentado o valor da sua satisfação (arredondado ao inteiro mais próximo via Math.round).
-
-# Menu de Gestão de Habitats
+# Habitat Management Menu
 Este menu permite operar sobre habitats. A lista completa é a seguinte: (i) visualizar todos os habitats; (ii) registar um novo habitat; (iii) alterar a área de um habitat; (iv) alterar influência de um habitat sobre uma espécie; (v) plantar uma nova árvore num habitat; (vi) visualizar todas as árvores de um habitat. As secções abaixo descrevem estas opções.
 
 As etiquetas das opções deste menu estão definidas em hva.app.habitat.Label. Todos os métodos correspondentes às mensagens de diálogo para este menu estão definidos em hva.app.habitat.Prompt e hva.app.habitat.Message.
