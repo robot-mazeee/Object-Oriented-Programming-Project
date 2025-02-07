@@ -161,64 +161,27 @@ The application returns the sum of all animals' and employees' satisfactions.
 
 # Animal Management Menu
 
-1. See all Animals 
+1. View all Animals 
 2. Register new Animal
 3. Transfer Animal to another Habitat 
 4. Calculate Animal Satisfaction
    
 # Employee Management Menu
 
-1. See all Employees
+1. View all Employees
 2. Register new Employee 
 3. Assign a new Responsibility (Habitat to clean or Animal to vaccinate) 
 4. Remove an Employee's Responsibility
 5. Calculate Employee Satisfaction
 
 # Habitat Management Menu
-Este menu permite operar sobre habitats. A lista completa é a seguinte: (i) visualizar todos os habitats; (ii) registar um novo habitat; (iii) alterar a área de um habitat; (iv) alterar influência de um habitat sobre uma espécie; (v) plantar uma nova árvore num habitat; (vi) visualizar todas as árvores de um habitat. As secções abaixo descrevem estas opções.
 
-As etiquetas das opções deste menu estão definidas em hva.app.habitat.Label. Todos os métodos correspondentes às mensagens de diálogo para este menu estão definidos em hva.app.habitat.Prompt e hva.app.habitat.Message.
-Estes comandos já estão implementados nas classes da package hva.app.habitat (disponível no GIT), respectivamente: DoShowAllHabitats, DoRegisterHabitat, DoChangeHabitatArea, DoChangeHabitatInfluence, DoAddTreeToHabitat, DoShowAllTreesInHabitat.
-
-# Visualizar todos os habitats
-O formato de apresentação para cada habitat é o seguinte:
-
- HABITAT|idHabitat|nome|área|númeroÁrvores
-
-Esta linha inicial pode ser seguida de zero ou mais linhas, cada uma com a descrição de cada árvore pertencente ao habitat usando o seguinte formato:
-
- ÁRVORE|idÁrvore|nomeÁrvore|idadeÁrvore|dificuldadeBaseLimpeza|tipoÁrvore|cicloBiológico
-
-O valor de dificuldadeBaseLimpeza diz respeito ao valor da dificuldade base de limpeza da árvore.
-
-O valores possíveis para tipoÁrvore são PERENE e CADUCA.
-
-Os possíveis valores para o campo cicloBiológico são:
-
-
-<img width="647" alt="image" src="https://github.com/user-attachments/assets/af2eb32b-5644-47fc-ab8f-e6d9ded781a3">
-
-
-# Registar um novo habitat
-O sistema pede o identificador, o nome (Prompt.habitatName()) (cadeia de caracteres) e a área do habitat (Prompt.habitatArea()) (número inteiro), sendo registado o novo habitat.
-
-Deve ser lançada a excepção DuplicateHabitatKeyException, se existir um habitat com o mesmo identificador, não se realizando qualquer acção.
-
-# Alterar a área de um habitat
-O sistema pede o identificador do habitat assim como a nova área desse habitat (Prompt.habitatArea()) (número inteiro).
-
-# Alterar influência de um habitat sobre uma espécie
-O sistema pede o identificador do habitat, o identificador da espécie e se a influência do habitat (Prompt.habitatInfluence()) sobre a espécie indicada é positiva (resposta: POS), negativa (resposta: NEG), ou neutra (resposta: NEU). Se a resposta não corresponder a nenhum dos três valores, esta última pergunta é repetida até se obter uma resposta válida.
-
-# Plantar uma nova árvore num habitat
-O sistema pede o identificador do habitat e o identificador da nova árvore a plantar. De seguida, pede-se o nome (Prompt.treeName()) (cadeia de caracteres), a idade da árvore (Prompt.treeAge()), a dificuldade base de limpeza associada à árvore (Prompt.treeDifficulty()) (número inteiro) e o tipo de árvore (Prompt.treeType()) (PERENE para árvore de folha perene; CADUCA para árvores de folha caduca), registado-se a nova árvore. Se a resposta relativa ao tipo não corresponder a nenhum dos dois valores, esta última pergunta é repetida até se obter uma resposta válida.
-
-Se já existir uma árvore com o mesmo identificador (em qualquer habitat), é lançada a excepção DuplicateTreeKeyException, não se realizando qualquer acção.
-
-A nova árvore deve ser apresentada na saída. O formato de apresentação é como descrito acima.
-
-# Visualizar todas as árvores de um habitat
-O sistema pede o identificador do habitat e apresenta as árvores que nele existem. O formato de apresentação é como descrito acima.
+1. View all Habitats
+2. Register new Habitat 
+3. Change area of an Habitat 
+4. Change Habitat's Influence over a Species
+5. Plant a new Tree in Habitat
+6. View all Trees in Habitat
 
 # Menu de Gestão de Vacinas
 Este menu permite operar sobre vacinas e vacinações. A lista completa é a seguinte: (i) visualizar todas as vacinas; (ii) registar uma nova vacina; (iii) vacinar um animal; (iv) listar o histórico de vacinações. As secções abaixo descrevem estas opções.
