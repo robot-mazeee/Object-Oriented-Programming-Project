@@ -9,7 +9,7 @@ java -Dimport=test.import -Din=test.in -Dout=test.outhyp hva.app.App
 diff -b test.out test.outhyp
 ```
 
-# Description
+# The Project
 Animals of various species are cared for by keepers, who are responsible by cleaning habitats, and vets, who are responsible by vaccinating the animals. When an animal is wrongly vaccinated, its health is affected for the rest of its life. It is possible to calculate the animals' and employees' satisfaction.
 Habitats have trees, which influence how difficult it is to clean the habitat. Trees have a life cycle and age dependent on the season of the year.
 
